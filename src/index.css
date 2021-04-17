@@ -2,5 +2,10 @@
 
 body {
   background-color: #111;
+  font-family: "Bebas Neue";
+}
+
+div {
+  box-sizing: border-box;
 }
 /* rest of app styles */

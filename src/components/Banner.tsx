@@ -14,6 +14,7 @@ const BannerContainer = styled.div<any>`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  object-fit: containt;
 `;
 
 const BannerInfoContainer = styled.div`
@@ -52,8 +53,11 @@ const Button = styled.button`
   margin-left: 1em;
   cursor: pointer;
 
+  transition: all 0.3s;
+
   &:hover {
-    box-shadow: 4px -7px 17px -7px rgba(0, 0, 0, 0.75);
+    background-color: #ddd;
+    color: #111;
   }
 `;
 
@@ -62,10 +66,11 @@ const Description = styled.p`
 `;
 
 //https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg
+//https://www.themoviedb.org/t/p/w600_and_h900_bestv2
 
 export const Banner: React.FC<{}> = () => {
   const [banner, setBanner] = useState<any>(null);
-  //https://www.themoviedb.org/t/p/w600_and_h900_bestv2
+
   useEffect(() => {
     const fetchBanner = async () => {
       try {

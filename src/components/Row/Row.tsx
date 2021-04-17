@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { RowItem } from "./RowItem";
-import { movies } from "../api/tmd/movies";
-import { generes } from "../api/tmd/generes";
+import { movies } from "../../api/tmd/movies";
+import { generes } from "../../api/tmd/generes";
 
 const RowContainer = styled.div`
   margin-top: -20px;
+  width: 100%;
+  position: relative;
 `;
 
 const RowTitle = styled.h1`
@@ -19,10 +21,35 @@ const RowWrapper = styled.div`
   padding: 0;
   height: 300px;
   width: 100%;
+  padding: 0.5em;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
+  overflow-x: scroll;
   gap: 20px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const ArrowBack = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  position: absolute;
+  top: 230px;
+  left: 0;
+  z-index: 10;
+`;
+
+const ArrowAfter = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: #444;
+  position: absolute;
+  top: 230px;
+  right: 0;
+  z-index: 10;
 `;
 
 export const Row: React.FC<{}> = () => {
@@ -65,8 +92,10 @@ export const Row: React.FC<{}> = () => {
 
   return (
     <RowContainer>
-      <RowTitle> Row title </RowTitle>
-      <RowWrapper>{items ? items.slice(0, 6) : null}</RowWrapper>
+      <RowTitle> Valeria </RowTitle>
+      <RowWrapper>{items ? items : null}</RowWrapper>
+      <ArrowBack />
+      <ArrowAfter />
     </RowContainer>
   );
 };

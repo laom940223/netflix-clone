@@ -1,17 +1,17 @@
 import React from "react";
-import { Banner } from "./components/Banner";
-import { NavBar } from "./components/navigation/NavBar";
-import { Row } from "./components/Row";
 
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Login } from "./pages/Login";
+import { Main } from "./pages/Main";
 function App() {
   return (
-    <>
-      <NavBar />
-      <Banner />
-      <Row />
-      <Row />
-      <Row />
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" component={Main} exact />
+
+        <Route path="/login" component={Login} exact />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

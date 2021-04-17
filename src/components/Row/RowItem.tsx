@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+//import { RowItemPreview } from "./RowItemPreview";
 interface rowItemProp {
   posterPath: string;
   title: string;
@@ -7,12 +8,13 @@ interface rowItemProp {
 }
 
 const RowItemWrap = styled.div<any>`
+  flex: 0 0 auto;
   width: 200px;
   heigth: 300px;
 
   transition: all 0.2s;
   &:hover {
-    transform: scale(1.5, 1.5);
+    transform: scale(1.1);
   }
 `;
 
@@ -23,17 +25,8 @@ const RowItemImg = styled.img<any>`
 `;
 
 export const RowItem: React.FC<rowItemProp> = ({ posterPath, title }) => {
-  const [show, setShow] = useState(false);
-
   return (
-    <RowItemWrap
-      onMouseEnter={() => {
-        setShow(true);
-      }}
-      onMouseLeave={() => {
-        setShow(false);
-      }}
-    >
+    <RowItemWrap>
       <RowItemImg src={posterPath} />
     </RowItemWrap>
   );
