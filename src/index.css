@@ -1,0 +1,6 @@
+@import-normalize; /*bring in normalize.css styles*/
+
+body {
+  background-color: #111;
+}
+/* rest of app styles */
