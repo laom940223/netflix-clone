@@ -71,3 +71,15 @@
   color: #eee;
   font-size: 0.9em;
 }
+
+@media screen and (max-width: 580px) {
+  .login__card {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 581px) and (max-width: 1000px) {
+  .login__card {
+    width: 70%;
+  }
+}

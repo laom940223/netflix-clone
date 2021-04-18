@@ -1,6 +1,5 @@
-import { Checkbox } from "@chakra-ui/checkbox";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "./LoginForm.css";

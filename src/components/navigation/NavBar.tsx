@@ -44,7 +44,7 @@ const AvatarImg = styled.img`
 `;
 
 export const NavBar: React.FC<{}> = () => {
-  const [black, setBlack] = useState(true);
+  const [black, setBlack] = useState(false);
 
   useEffect(() => {
     const print = () => {

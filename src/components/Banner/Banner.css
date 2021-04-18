@@ -1,0 +1,111 @@
+.banner {
+  width: 100%;
+  height: 40vh;
+  /* background-image: url("https://image.tmdb.org/t/p/w1280/d2UxKyaJ5GgzuHaSsWinFfv3g6L.jpg"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.banner__info {
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(54, 29, 29, 0.7); */
+  display: flex;
+  padding: 1em 1em;
+  font-size: 0.8em;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+  position: relative;
+  z-index: 3;
+}
+
+.banner__info::before {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(41, 40, 40, 0.308);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.banner__title {
+  font-size: 3em;
+  margin: 0;
+  margin-bottom: 0.25em;
+}
+
+.banner__buttonsContainer {
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.banner__button {
+  border: medium none;
+  background-color: #111;
+  color: #ddd;
+  padding: 0.75em 2.5em;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: all 0.3s;
+}
+
+.banner__button:hover {
+  background-color: #ddd;
+  color: #111;
+}
+
+.banner__description {
+  display: block;
+  width: 90%;
+  text-align: justify;
+  font-size: 1.1em;
+}
+
+@media screen and (min-width: 580px) and (max-width: 1000px) {
+  .banner {
+    height: 60vh;
+  }
+
+  .banner__title {
+    font-size: 3.5em;
+  }
+
+  .banner__info {
+    padding: 2em 2em;
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .banner {
+    height: 80vh;
+  }
+
+  .banner__title {
+    font-size: 4em;
+  }
+
+  .banner__info {
+    padding: 4em 4em;
+    font-size: 1em;
+  }
+
+  .banner__button {
+    padding: 0.75em 3em;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+  .banner__description {
+    width: 60%;
+    font-size: 1.4em;
+  }
+}

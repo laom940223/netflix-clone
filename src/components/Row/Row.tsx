@@ -1,64 +1,22 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { RowItem } from "./RowItem";
 import { movies } from "../../api/tmd/movies";
-import { generes } from "../../api/tmd/generes";
+import { Spinner } from "../utils/Spinner";
 
-const RowContainer = styled.div`
-  margin-top: -20px;
-  width: 100%;
-  position: relative;
-`;
+import "./Row.css";
 
-const RowTitle = styled.h1`
-  padding: 1em 0.5em;
-  margin-bottom: 0;
-  font-size: 2em;
-  color: white;
-`;
+interface rowProps {
+  title: string;
+  fetchTitle: string;
+}
 
-const RowWrapper = styled.div`
-  padding: 0;
-  height: 300px;
-  width: 100%;
-  padding: 0.5em;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  gap: 20px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const ArrowBack = styled.div`
-  width: 40px;
-  height: 40px;
-  background-color: red;
-  position: absolute;
-  top: 230px;
-  left: 0;
-  z-index: 10;
-`;
-
-const ArrowAfter = styled.div`
-  width: 40px;
-  height: 40px;
-  background-color: #444;
-  position: absolute;
-  top: 230px;
-  right: 0;
-  z-index: 10;
-`;
-
-export const Row: React.FC<{}> = () => {
+export const Row: React.FC<rowProps> = ({ title, fetchTitle }) => {
   const [moviesData, setMoviesData] = useState<any>(null);
   //https://www.themoviedb.org/t/p/w600_and_h900_bestv2
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const { data } = await movies.get(generes.upcoming);
+        const { data } = await movies.get(fetchTitle);
 
         let ban = data.results.map((data: any) => {
           data.backdrop_path =
@@ -91,11 +49,9 @@ export const Row: React.FC<{}> = () => {
   }
 
   return (
-    <RowContainer>
-      <RowTitle> Valeria </RowTitle>
-      <RowWrapper>{items ? items : null}</RowWrapper>
-      <ArrowBack />
-      <ArrowAfter />
-    </RowContainer>
+    <div className="row">
+      <h2 className="row__title"> {title}</h2>
+      <div className="row__movies">{items ? items : <Spinner />}</div>
+    </div>
   );
 };
