@@ -1,0 +1,24 @@
+.footer {
+  margin: 0;
+  padding: 0 4em;
+  padding-bottom: 2em;
+  color: #666;
+  width: 100%;
+  background-color: #111;
+  font-size: 1.2em;
+}
+
+.left {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start !important;
+}
+
+.footer__row {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}

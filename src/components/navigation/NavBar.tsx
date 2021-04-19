@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useAuth } from "../../context/AuthContext";
 //https://assets.brand.microsites.netflix.io/assets/493f5bba-81a4-11e9-bf79-066b49664af6_cm_1440w.png?v=26
 //https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmir-s3-cdn-cf.behance.net%2Fproject_modules%2Fdisp%2F366be133850498.56ba69ac36858.png&f=1&nofb=1
 
@@ -45,6 +46,7 @@ const AvatarImg = styled.img`
 
 export const NavBar: React.FC<{}> = () => {
   const [black, setBlack] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const print = () => {
@@ -70,9 +72,11 @@ export const NavBar: React.FC<{}> = () => {
 
       <NavAuthContainer>
         <NavAuth>
-          <Link to="/login">
-            <AvatarImg src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmir-s3-cdn-cf.behance.net%2Fproject_modules%2Fdisp%2F366be133850498.56ba69ac36858.png&f=1&nofb=1" />
-          </Link>
+          {user ? (
+            <Link to="/login">
+              <AvatarImg src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmir-s3-cdn-cf.behance.net%2Fproject_modules%2Fdisp%2F366be133850498.56ba69ac36858.png&f=1&nofb=1" />
+            </Link>
+          ) : null}
         </NavAuth>
       </NavAuthContainer>
     </NavBarContainer>

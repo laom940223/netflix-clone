@@ -3,11 +3,14 @@ import { movies } from "../../api/tmd/movies";
 import { generes } from "../../api/tmd/generes";
 import "./Banner.css";
 import { Spinner } from "../utils/Spinner";
+import { useAuth } from "../../context/AuthContext";
 
 //https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg
 //https://www.themoviedb.org/t/p/w600_and_h900_bestv2
 
 export const Banner: React.FC<{}> = () => {
+  const auth = useAuth();
+
   const [banner, setBanner] = useState<any>(null);
 
   useEffect(() => {
@@ -30,6 +33,8 @@ export const Banner: React.FC<{}> = () => {
     fetchBanner();
   }, []);
 
+  console.log(auth.user);
+
   let display = <Spinner />;
   if (banner) {
     display = (
@@ -41,8 +46,12 @@ export const Banner: React.FC<{}> = () => {
         <div className="banner__info">
           <h1 className="banner__title">{banner.title || banner.name}</h1>
           <div className="banner__buttonsContainer">
-            <button className="banner__button">Play</button>
-            <button className="banner__button">My List</button>
+            <button onClick={auth.logOutUser} className="banner__button">
+              Log out
+            </button>
+            <button onClick={auth.logInUser} className="banner__button">
+              Log in
+            </button>
           </div>
           <p className="banner__description">{banner.overview.slice(0, 200)}</p>
         </div>

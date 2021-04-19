@@ -28,10 +28,9 @@ export const LoginForm: React.FC<{}> = () => {
         <Formik
           initialValues={{ email: "", password: "", remeber: false }}
           validationSchema={Yup.object({
-            password: Yup.string().min(
-              4,
-              "Must be at least 4 characters or more"
-            ),
+            password: Yup.string()
+              .min(4, "Must be at least 4 characters or more")
+              .required("The password is required"),
 
             email: Yup.string()
               .email("Invalid email address")
