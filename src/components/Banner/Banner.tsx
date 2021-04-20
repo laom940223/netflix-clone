@@ -3,16 +3,25 @@ import { movies } from "../../api/tmd/movies";
 import { generes } from "../../api/tmd/generes";
 import "./Banner.css";
 import { Spinner } from "../utils/Spinner";
-import { useAuth } from "../../context/AuthContext";
+
+import { useHistory } from "react-router";
 
 //https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg
 //https://www.themoviedb.org/t/p/w600_and_h900_bestv2
 
 export const Banner: React.FC<{}> = () => {
-  const auth = useAuth();
+  const history = useHistory();
 
   const [banner, setBanner] = useState<any>(null);
 
+  const handlePlayClick = () => {
+    history.push({
+      pathname: "/video",
+      search: `?name=${banner.name.replaceAll(" ", "+")}`,
+    });
+  };
+
+  console.log("Banner", banner);
   useEffect(() => {
     const fetchBanner = async () => {
       try {
@@ -33,8 +42,6 @@ export const Banner: React.FC<{}> = () => {
     fetchBanner();
   }, []);
 
-  console.log(auth.user);
-
   let display = <Spinner />;
   if (banner) {
     display = (
@@ -46,12 +53,10 @@ export const Banner: React.FC<{}> = () => {
         <div className="banner__info">
           <h1 className="banner__title">{banner.title || banner.name}</h1>
           <div className="banner__buttonsContainer">
-            <button onClick={auth.logOutUser} className="banner__button">
-              Log out
+            <button onClick={handlePlayClick} className="banner__button">
+              Play
             </button>
-            <button onClick={auth.logInUser} className="banner__button">
-              Log in
-            </button>
+            <button className="banner__button">Add</button>
           </div>
           <p className="banner__description">{banner.overview.slice(0, 200)}</p>
         </div>

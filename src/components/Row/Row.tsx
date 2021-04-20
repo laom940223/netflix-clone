@@ -33,6 +33,7 @@ export const Row: React.FC<rowProps> = ({ title, fetchTitle }) => {
     };
 
     fetchMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let items = null;
@@ -42,7 +43,7 @@ export const Row: React.FC<rowProps> = ({ title, fetchTitle }) => {
         <RowItem
           key={movie.id}
           posterPath={movie.backdrop_path}
-          title={movie.title}
+          title={movie.title || movie.name}
         />
       );
     });

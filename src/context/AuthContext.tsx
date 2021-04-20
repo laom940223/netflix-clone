@@ -1,44 +1,50 @@
 import React, { useContext, useEffect, useState } from "react";
-import { EnumType } from "typescript";
 import { Spinner } from "../components/utils/Spinner";
 
 interface userInterface {
   name: string;
+  email: string;
+  password: string;
+  plan: string;
   role: string;
 }
 
-const defUser = {
-  name: "user",
-  role: "normal",
-} as userInterface;
+const testUser: userInterface = {
+  email: "test@test.com",
+  name: "Test User",
+  plan: "Basic",
+  role: "user",
+  password: "password",
+};
 
-export const AuthContext = React.createContext<any | null>(null);
+interface authContext {
+  user: userInterface | null;
+  logInUser: (email: string, password: string) => string | undefined;
+  logOutUser: () => Promise<any> | void;
+}
+
+const defaultContext = {
+  user: null,
+  logInUser: (_: string, __: string) => "default",
+  logOutUser: () => {},
+};
+
+export const AuthContext = React.createContext<authContext>(defaultContext);
 
 export const AuthProvider: React.FC<{}> = ({ children }) => {
-  const [user, setUser] = useState<userInterface | null>(defUser);
+  const [user, setUser] = useState<userInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const logInUser = async () => {
-    setLoading(true);
-
-    if (user) {
-      setLoading(false);
-      return;
+  const logInUser = (email: string, password: string) => {
+    if (email === testUser.email && password === testUser.password) {
+      setUser(testUser);
+    } else {
+      return "Invalid user or password" as string;
     }
-
-    setTimeout(() => {
-      setUser(defUser);
-      setLoading(false);
-    }, 1000);
   };
 
   const logOutUser = async () => {
     setLoading(true);
-
-    if (!user) {
-      setLoading(false);
-      return;
-    }
 
     setTimeout(() => {
       setUser(null);
@@ -54,6 +60,7 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
     }
 
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const value = {

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import { useHistory } from "react-router";
 
 interface rowItemProp {
   posterPath: string;
@@ -8,8 +8,18 @@ interface rowItemProp {
 }
 
 export const RowItem: React.FC<rowItemProp> = ({ posterPath, title }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    const newTitle = title.replaceAll(" ", "+");
+    history.push({
+      pathname: "/video",
+      search: `?name=${newTitle}`,
+    });
+  };
+
   return (
-    <div className="row__movie__container">
+    <div onClick={handleClick} className="row__movie__container">
       <img className="row__movie__image" alt="asd" src={posterPath} />
     </div>
   );

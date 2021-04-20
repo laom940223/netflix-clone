@@ -1,8 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
 import "./LoginForm.css";
+import { useAuth } from "../../context/AuthContext";
 
 const InputField = styled(Field)`
   width: 100%;
@@ -17,6 +18,8 @@ const InputField = styled(Field)`
 `;
 
 export const LoginForm: React.FC<{}> = () => {
+  const { logInUser } = useAuth();
+  const [error, setError] = useState<string | null>(null);
   return (
     <div className="login">
       <img
@@ -36,11 +39,12 @@ export const LoginForm: React.FC<{}> = () => {
               .email("Invalid email address")
               .required("The email is required"),
           })}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+          onSubmit={async ({ email, password }, utils) => {
+            const response = logInUser(email, password);
+
+            if (response) {
+              setError(response);
+            }
           }}
         >
           {({ isSubmitting }: any) => (
@@ -71,6 +75,10 @@ export const LoginForm: React.FC<{}> = () => {
                   className="login__error showError"
                   component="p"
                 />
+
+                {error ? (
+                  <p className="login__error showError">{error}</p>
+                ) : null}
               </div>
               <div className="login__row">
                 <button

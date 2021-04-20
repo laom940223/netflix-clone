@@ -1,6 +1,6 @@
 .footer {
   margin: 0;
-  padding: 0 4em;
+  padding: 0 1em;
   padding-bottom: 2em;
   color: #666;
   width: 100%;
@@ -19,6 +19,20 @@
   padding: 0;
   width: 100%;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer__col {
+  width: 50%;
+}
+
+@media screen and (min-width: 720px) {
+  .footer {
+    padding: 0 2em;
+  }
+
+  .footer__col {
+    width: auto;
+  }
 }

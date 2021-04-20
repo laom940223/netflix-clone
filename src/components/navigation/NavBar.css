@@ -1,0 +1,69 @@
+.auth {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth__img {
+  height: 30px;
+  width: 30px;
+}
+
+.auth__menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 10em;
+  z-index: 4;
+  display: none;
+  background-color: #ccc;
+  color: #111;
+}
+
+.auth__menu__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+
+  display: none;
+}
+
+.auth__menu::before {
+  width: 15px;
+  height: 15px;
+  content: "";
+  background-color: #ccc;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  transform: rotate(45deg);
+  transform-origin: top right;
+}
+
+.show__menu {
+  display: block;
+}
+
+.auth__menu__list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0.3em;
+  font-size: 1.2em;
+}
+
+.auth__menu__list__item {
+  padding: 0.25em 1em;
+  cursor: pointer;
+  transition: 0.4s all;
+}
+
+.auth__menu__list__item:hover {
+  padding-left: 1.5em;
+}
