@@ -35,8 +35,17 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
   const [user, setUser] = useState<userInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const saveUser = (user: userInterface) => {
+    localStorage.setItem("net-user", JSON.stringify(user, null, 2));
+  };
+
+  const deleteUser = () => {
+    localStorage.removeItem("net-user");
+  };
+
   const logInUser = (email: string, password: string) => {
     if (email === testUser.email && password === testUser.password) {
+      saveUser(testUser);
       setUser(testUser);
     } else {
       return "Invalid user or password" as string;
@@ -47,14 +56,22 @@ export const AuthProvider: React.FC<{}> = ({ children }) => {
     setLoading(true);
 
     setTimeout(() => {
+      deleteUser();
       setUser(null);
       setLoading(false);
     }, 1000);
   };
 
   useEffect(() => {
-    if (user) {
-      console.log("Logged In ");
+    const stringUser = localStorage.getItem("net-user");
+
+    let objectUser;
+    if (stringUser) {
+      objectUser = JSON.parse(stringUser);
+    }
+
+    if (objectUser) {
+      setUser(objectUser);
     } else {
       console.log("need to log in ");
     }
