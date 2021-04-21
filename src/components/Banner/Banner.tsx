@@ -21,7 +21,6 @@ export const Banner: React.FC<{}> = () => {
     });
   };
 
-  console.log("Banner", banner);
   useEffect(() => {
     const fetchBanner = async () => {
       try {
@@ -32,11 +31,8 @@ export const Banner: React.FC<{}> = () => {
         ban.backdrop_path =
           "https://image.tmdb.org/t/p/w1280" + ban.backdrop_path;
 
-        console.log(ban.backdrop_path);
         setBanner(ban);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
 
     fetchBanner();

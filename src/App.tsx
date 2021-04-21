@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
 import { DetailVideo } from "./pages/DetailVideo";
 import { Login } from "./pages/Login";
@@ -23,6 +23,10 @@ function App() {
         </ProtectedRoute>
 
         <Route path="/login" component={Login} exact />
+
+        <Route path="/">
+          <Redirect to="/" />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

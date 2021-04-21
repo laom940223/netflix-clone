@@ -17,8 +17,6 @@ export const ProtectedRoute: React.FC<protectedRoute> = ({
 }) => {
   const { user } = useAuth();
 
-  console.log("Hello from protected route");
-
   return (
     <Route
       {...rest}

@@ -27,9 +27,7 @@ export const Row: React.FC<rowProps> = ({ title, fetchTitle }) => {
         });
 
         setMoviesData(ban);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
 
     fetchMovies();
